@@ -5,19 +5,19 @@ type Tuple struct {
 	Count float64
 }
 
-type Tuples []Tuple
+type tuples []Tuple
 
-func (t Tuples) Len() int {
+func (t tuples) Len() int {
 	return len(t)
 }
 
-func (t Tuples) Less(i, j int) bool {
+func (t tuples) Less(i, j int) bool {
 	return t[i].Count < t[j].Count
 }
 
-func (t Tuples) Swap(i, j int) {
+func (t tuples) Swap(i, j int) {
 	t[i], t[j] = t[j], t[i]
 }
 
-type Languages map[string]Trigrams
-type Trigrams map[string]int
+type languages map[string]trigrams
+type trigrams map[string]int

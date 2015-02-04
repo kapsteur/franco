@@ -13,8 +13,11 @@ $ go get github.com/kapsteur/franco
 ## Usage
 
 ```go
-res := franco.Detect("Votre temps est limité, ne le gâchez pas en menant une existence qui n’est pas la vôtre.")
+res := franco.DetectOne("Votre temps est limité, ne le gâchez pas en menant une existence qui n’est pas la vôtre.")
 // res == {Code:"fra" Count:1}
+
+res := franco.Detect("Votre temps est limité, ne le gâchez pas en menant une existence qui n’est pas la vôtre.")
+// res == [{Code:"fra" Count:1},{spa 0.7709821779068855},{cat 0.7656434011148622},{src 0.7274083379131664}...]
 ```
 
 ## Todo

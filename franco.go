@@ -15,7 +15,7 @@ const MAX_DIFFERENCE = float64(300)
 const MAX_LENGTH = 2048
 const MIN_LENGTH = 3
 
-var scripts map[string]Languages
+var scripts map[string]languages
 var expressions map[string]regexp.Regexp
 
 //Init `scripts` and `expressions` dictionaries
@@ -33,9 +33,9 @@ func init() {
 		os.Exit(1)
 	}
 
-	scripts = make(map[string]Languages)
+	scripts = make(map[string]languages)
 	for scriptCode, scriptValue := range scriptData {
-		languages := make(map[string]Trigrams)
+		languages := make(map[string]trigrams)
 
 		lang := scriptValue.(map[string]interface{})
 		for code, trigramsRaw := range lang {
@@ -71,18 +71,18 @@ func init() {
 }
 
 //Filter `languages` by removing languages in `blacklist`, or including languages in `whitelist`.
-func filterLanguages(languages Languages, whitelist []string, blacklist []string) Languages {
-	filteredLanguages := make(Languages)
+func filterLanguages(langs languages, whitelist []string, blacklist []string) languages {
+	filteredLanguages := make(languages)
 
 	if len(whitelist) == 0 && len(blacklist) == 0 {
-		return languages
+		return langs
 	}
 
 	if len(whitelist) == 0 {
-		filteredLanguages = languages
+		filteredLanguages = langs
 	} else {
 		for _, code := range whitelist {
-			filteredLanguages[code] = languages[code]
+			filteredLanguages[code] = langs[code]
 		}
 	}
 
@@ -95,7 +95,7 @@ func filterLanguages(languages Languages, whitelist []string, blacklist []string
 }
 
 //Get the distance between `trigrams`, and a trigram `model`.
-func getDistance(trigrams Tuples, model Trigrams) float64 {
+func getDistance(trigrams tuples, model trigrams) float64 {
 	distance := float64(0)
 
 	for _, t := range trigrams {
@@ -117,9 +117,9 @@ func getDistance(trigrams Tuples, model Trigrams) float64 {
 }
 
 //Get the distance between `trigrams`, and multiple trigram dictionaries `languages`.
-func getDistances(trigrams Tuples, languages Languages, whitelist []string, blacklist []string) Tuples {
+func getDistances(trigrams tuples, languages languages, whitelist []string, blacklist []string) tuples {
 	filteredLanguages := filterLanguages(languages, whitelist, blacklist)
-	tuples := make(Tuples, 0)
+	tuples := make(tuples, 0)
 
 	for code, language := range filteredLanguages {
 		dis := getDistance(trigrams, language)
@@ -161,14 +161,14 @@ func getTopScript(value string) string {
 }
 
 //Create a single tuple as a list of tuples from a given language code.
-func singleLanguageTuples(code string) Tuples {
-	tuples := make(Tuples, 1)
+func singleLanguageTuples(code string) tuples {
+	tuples := make(tuples, 1)
 	tuples[0] = Tuple{Code: code, Count: 1}
 	return tuples
 }
 
 //Get a list of probable languages the given value is written in.
-func DetectWithFilters(value string, whitelist []string, blacklist []string) Tuples {
+func DetectWithFilters(value string, whitelist []string, blacklist []string) tuples {
 	if len(value) < MIN_LENGTH {
 		return singleLanguageTuples("und")
 	}
@@ -187,7 +187,7 @@ func DetectWithFilters(value string, whitelist []string, blacklist []string) Tup
 }
 
 //Get a list of probable languages the given value is written in.
-func Detect(value string) Tuples {
+func Detect(value string) tuples {
 	return DetectWithFilters(value, make([]string, 0), make([]string, 0))
 }
 
@@ -201,7 +201,7 @@ func DetectOneWithFilters(value string, whitelist []string, blacklist []string) 
 	return DetectWithFilters(value, whitelist, blacklist)[0]
 }
 
-func normalize(value string, distances Tuples) Tuples {
+func normalize(value string, distances tuples) tuples {
 	sort.Sort(distances)
 
 	min := distances[0].Count
