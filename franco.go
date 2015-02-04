@@ -123,7 +123,7 @@ func getDistances(trigrams tuples, languages languages, whitelist []string, blac
 
 	for code, language := range filteredLanguages {
 		dis := getDistance(trigrams, language)
-		t := Tuple{Code: code, Count: dis}
+		t := tuple{Code: code, Count: dis}
 		tuples = append(tuples, t)
 	}
 
@@ -163,7 +163,7 @@ func getTopScript(value string) string {
 //Create a single tuple as a list of tuples from a given language code.
 func singleLanguageTuples(code string) tuples {
 	tuples := make(tuples, 1)
-	tuples[0] = Tuple{Code: code, Count: 1}
+	tuples[0] = tuple{Code: code, Count: 1}
 	return tuples
 }
 
@@ -192,12 +192,12 @@ func Detect(value string) tuples {
 }
 
 //Get the most probable language for the given value.
-func DetectOne(value string) Tuple {
+func DetectOne(value string) tuple {
 	return Detect(value)[0]
 }
 
 //Get the most probable language for the given value.
-func DetectOneWithFilters(value string, whitelist []string, blacklist []string) Tuple {
+func DetectOneWithFilters(value string, whitelist []string, blacklist []string) tuple {
 	return DetectWithFilters(value, whitelist, blacklist)[0]
 }
 

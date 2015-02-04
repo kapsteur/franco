@@ -1,7 +1,12 @@
-Franco
+Franco [![GoDoc](https://godoc.org/github.com/kapsteur/franco?status.png)](https://godoc.org/github.com/kapsteur/franco)
 ======
 
 Detect the language of text.
+
+
+## Supported languages
+
+Franco supports 175 “languages”. For a complete list, check out [languages list](https://github.com/kapsteur/franco/blob/master/languages.md)
 
 
 ## Installation

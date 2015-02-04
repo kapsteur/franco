@@ -1,6 +1,6 @@
 package franco
 
-type Tuple struct {
+type tuple struct {
 	Code  string
 	Count float64
 }
