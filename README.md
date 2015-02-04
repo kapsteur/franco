@@ -17,7 +17,7 @@ res := franco.Detect("Votre temps est limité, ne le gâchez pas en menant une e
 // res == {Code:"fra" Count:1}
 ```
 
-## TODO:
+## Todo
 
 * Test, test and test again
 
