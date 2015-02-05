@@ -5,7 +5,7 @@ type tuple struct {
 	Count float64
 }
 
-type tuples []Tuple
+type tuples []tuple
 
 func (t tuples) Len() int {
 	return len(t)

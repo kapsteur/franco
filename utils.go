@@ -21,8 +21,9 @@ func clean(value string) string {
 }
 
 func getTrigrams(value string) []string {
+	value = " " + clean(value) + " "
 	res := make([]string, 0)
-	val := utf8string.NewString(" " + clean(value) + " ")
+	val := utf8string.NewString(value)
 	i := 0
 	for i+3 < utf8.RuneCountInString(value) {
 		res = append(res, val.Slice(i, i+3))
@@ -45,12 +46,12 @@ func getTrigramsAsMap(value string) map[string]int {
 	return res
 }
 
-func getTrigramsAsTuples(value string) []Tuple {
+func getTrigramsAsTuples(value string) []tuple {
 	trigrams := getTrigramsAsMap(value)
-	res := make([]Tuple, len(trigrams))
+	res := make([]tuple, len(trigrams))
 	i := 0
 	for code, count := range trigrams {
-		res[i] = Tuple{Code: code, Count: float64(count)}
+		res[i] = tuple{Code: code, Count: float64(count)}
 		i++
 	}
 
