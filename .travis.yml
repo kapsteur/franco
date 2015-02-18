@@ -1,3 +1,5 @@
 language: go
+env:
+  - FIXTURE_DIR=$HOME/gopath/src/github.com/kapsteur/franco/data/
 
 script: go test ./...
