@@ -18,14 +18,7 @@ var expressions map[string]regexp.Regexp
 
 //Init `scripts` and `expressions` dictionaries
 func init() {
-	/*scriptFile, e := ioutil.ReadFile(path.Join(os.Getenv("GOPATH"), "src/github.com/kapsteur/franco/data/script.json"))
-	if e != nil {
-		log.Printf("File error: %v\n", e)
-		os.Exit(1)
-	}*/
-
 	var scriptData map[string]interface{}
-	//err := json.Unmarshal(scriptFile, &scriptData)
 	err := json.Unmarshal([]byte(SCRIPT_DATA), &scriptData)
 	if err != nil {
 		log.Printf("Error during languages decoding: %v\n", err)
@@ -50,14 +43,7 @@ func init() {
 		scripts[scriptCode] = languages
 	}
 
-	/*expressionFile, e := ioutil.ReadFile(path.Join(os.Getenv("GOPATH"), "src/github.com/kapsteur/franco/data/expression.json"))
-	if e != nil {
-		log.Printf("File error: %v\n", e)
-		os.Exit(1)
-	}*/
-
 	var expressionsData map[string]interface{}
-	//err = json.Unmarshal(expressionFile, &expressionsData)
 	err = json.Unmarshal([]byte(EXPRESSION_DATA), &expressionsData)
 	if err != nil {
 		log.Printf("Error during expressions decoding: %v\n", err)
