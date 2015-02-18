@@ -5,13 +5,12 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"path"
 	"testing"
 )
 
 func TestFranco(t *testing.T) {
 
-	fisxtureFile, e := ioutil.ReadFile(path.Join(os.Getenv("FIXTURE_DIR"), "fixture.json"))
+	fisxtureFile, e := ioutil.ReadFile("fixture.json")
 	if e != nil {
 		log.Printf("File error: %v\n", e)
 		os.Exit(1)
