@@ -1,5 +1,7 @@
-Franco [![GoDoc](https://godoc.org/github.com/kapsteur/franco?status.png)](https://godoc.org/github.com/kapsteur/franco)
+Franco [![GoDoc](https://godoc.org/github.com/kapsteur/franco?status.png)](https://godoc.org/github.com/kapsteur/franco) [![Build Status](https://api.travis-ci.org/kapsteur/franco.svg)](https://travis-ci.org/kapsteur/franco)
 ======
+
+
 
 Detect the language of text.
 
