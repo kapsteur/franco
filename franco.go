@@ -2,13 +2,11 @@ package franco
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"log"
 	"os"
 	"regexp"
 	"sort"
 	"strings"
-	"path"
 )
 
 const MAX_DIFFERENCE = float64(300)
@@ -20,15 +18,9 @@ var expressions map[string]regexp.Regexp
 
 //Init `scripts` and `expressions` dictionaries
 func init() {
-	scriptFile, e := ioutil.ReadFile(path.Join(os.Getenv("GOPATH"), "src/github.com/kapsteur/franco/data/script.json"))
-	if e != nil {
-		log.Printf("File error: %v\n", e)
-		os.Exit(1)
-	}
-
 	var scriptData map[string]interface{}
-	err := json.Unmarshal(scriptFile, &scriptData)
-	if e != nil {
+	err := json.Unmarshal([]byte(SCRIPT_DATA), &scriptData)
+	if err != nil {
 		log.Printf("Error during languages decoding: %v\n", err)
 		os.Exit(1)
 	}
@@ -51,15 +43,9 @@ func init() {
 		scripts[scriptCode] = languages
 	}
 
-	expressionFile, e := ioutil.ReadFile(path.Join(os.Getenv("GOPATH"), "src/github.com/kapsteur/franco/data/expression.json"))
-	if e != nil {
-		log.Printf("File error: %v\n", e)
-		os.Exit(1)
-	}
-
 	var expressionsData map[string]interface{}
-	err = json.Unmarshal(expressionFile, &expressionsData)
-	if e != nil {
+	err = json.Unmarshal([]byte(EXPRESSION_DATA), &expressionsData)
+	if err != nil {
 		log.Printf("Error during expressions decoding: %v\n", err)
 		os.Exit(1)
 	}
@@ -140,7 +126,6 @@ func getOccurrence(value string, expression regexp.Regexp) float64 {
 
 	return float64(count) / float64(len(value))
 }
-
 
 //From `scripts`, get the most occurring script for `value`
 func getTopScript(value string) string {
