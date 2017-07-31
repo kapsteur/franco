@@ -30,6 +30,13 @@ res := franco.Detect("Votre temps est limité, ne le gâchez pas en menant une e
 ## Derivation
 
 Franco is a derivative work from [Franc](https://github.com/wooorm/franc) (Js, MIT).
+Franc is a derivative work from [guess-language][] (Python, LGPL),
+[guesslanguage][] (C++, LGPL), and [Language::Guess][language-guess]
+(Perl, GPL).  Their creators granted me the rights to distribute franc
+under the MIT license: respectively, [Kent S. Johnson][grant-3],
+[Jacob R. Rideout][grant-2], and [Maciej Ceglowski][grant-1].
+
+
 
 ## License
 
